@@ -1,0 +1,37 @@
+baseurl = "http://g-thomson.github.com/"
+relativeurls = true
+languageCode = "en-us"
+title = "The Mindfield"
+publishDir = "docs"
+
+googleAnalytics = ""
+disqusShortname = ""
+ignoreFiles = ["\\.Rmd$", "_files$", "_cache$"]
+
+[permalinks]
+    post = "/:year/:month/:day/:slug/"
+
+[[menu.main]]
+    name = "About"
+    url = "www.g-thomson.com"
+[[menu.main]]
+    name = "GitHub"
+    url = "https://github.com/G-Thomson"
+[[menu.main]]
+    name = "Twitter"
+    url = "https://twitter.com/gojthomson"
+
+[params]
+    description = "A website built through Hugo and blogdown."
+
+    # options for highlight.js (version, additional languages, and theme)
+    highlightjsVersion = "9.9.0"
+    highlightjsLang = ["r", "yaml"]
+    highlightjsTheme = "github"
+
+    [params.logo]
+    url = "logo.png"
+    width = 50
+    height = 50
+    alt = "Logo"
+
