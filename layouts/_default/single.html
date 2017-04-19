@@ -1,9 +1,10 @@
 {{ $baseurl := .Site.BaseURL }}
-{{ partial "header.html" . }}
+{{ partial "header_post.html" . }}
 <main id="content">
 
 <article id="{{ .Slug }}" class="{{ .Type }}">
     <div class="post-stamp">
+        <a id="logo" href="{{ .Site.BaseURL }}"><img src="/img/c_brain.svg" alt="{{ .Site.Title }}" height = "25" width = "25" /></a>
         <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">
             {{ .Date.Format "2 Jan 2006" }}
         </time>
@@ -33,4 +34,4 @@
 </article>
 
 </main>
-{{ partial "footer.html" . }}
+{{ partial "footer_post.html" . }}

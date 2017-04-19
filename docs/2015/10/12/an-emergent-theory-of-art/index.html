@@ -71,28 +71,13 @@
 
 
     </head>
-    <body>
-        <header id="header">
-            <a id="logo" href="../../../../"><img src="../../../../img/c_brain.svg" alt="The Mindfield" /></a>
-            <h1><a href="../../../../">The Mindfield</a></h1>
-            A blog by Geoffrey Thomson
-            <p></p>
 
-            <div id="follow-icons">
-  <a href="mailto:gtho123@aucklanduni.ac.nz" rel="me"><i class="cf cf-envelope-square cf-2x"></i></a>
-  <a href="https://scholar.google.co.nz/citations?user=ivWnX2cAAAAJ&hl=en" rel="me"><i class="cf cf-google-scholar-square cf-2x"></i></a>
-	<a href="https://twitter.com/gojthomson" rel="me"><i class="cf cf-twitter-square cf-2x"></i></a>
-	<a href="https://github.com/G-Thomson" rel="me"><i class="cf cf-github-square cf-2x"></i></a>
-</div>  
-            <h6><a href="http://www.g-thomson.com">About me</a></h6>
 
-<h6><a href="../../../../categories/categories">Categories</a></h6> 
-
-        </header>
 <main id="content">
 
 <article id="" class="post">
     <div class="post-stamp">
+        <a id="logo" href="../../../../"><img src="../../../../img/c_brain.svg" alt="The Mindfield" height = "25" width = "25" /></a>
         <time datetime="2015-10-12T00:00:00Z">
             12 Oct 2015
         </time>
@@ -113,8 +98,8 @@
     </div>
     <h1 class="post-title">An Emergent Theory of Art</h1>
     <div id="follow-icons">
-	<a href="https://twitter.com/share" rel="me"><i class="cf cf-twitter-square cf-3x"></i></a>
-	<a href="http://www.facebook.com/share.php?u=%2f2015%2f10%2f12%2fan-emergent-theory-of-art%2f&title=An%20Emergent%20Theory%20of%20Art" onclick="return !window.open(this.href, 'Facebook', 'width=640, height=380')" rel="me"><i class="cf cf-facebook-square cf-3x"></i></a>
+	<a href="https://twitter.com/share" onclick="return popitup('https://twitter.com/share')"><i class="cf cf-twitter-square cf-3x"></i></a>
+
 	
 </div>
 
@@ -159,7 +144,7 @@
 
 </main>
 		<footer id="footer">
-			<section id="footer-message">&copy; Geoffrey Thomson. All rights reserved. Powered by <a href="http://gohugo.io" target="_blank">Hugo</a>. <a href="https://github.com/kathyqian/crisp-ghost-theme" target="_blank">Crisp</a> theme by <a href="http://kathyqian.com" target="_blank">Kathy Qian</a>.</section>
+			<section id="footer-message">&copy; Geoffrey Thomson. All rights reserved. Powered by <a href="http://gohugo.io" target="_blank">Hugo</a>, implemented in <a href="https://github.com/rstudio/blogdown" target="_blank">R Blogdown</a> and hosted on <a href="https://pages.github.com/" target="_blank">Github</a>. The <a href="https://github.com/kathyqian/crisp-ghost-theme" target="_blank">Crisp</a> theme is by <a href="http://kathyqian.com" target="_blank">Kathy Qian</a>.</section>
 		</footer>
 
     <script>
@@ -174,7 +159,7 @@
         callback:function(){
           asyncLoader([
             "\/css/customfonts.css",
-            "\/css/crisp.css",
+            "\/css/crisp_post.css",
             "\/css/rrssb.css",
             "\/js/gist.min.js", 
             "\/js/rrssb.min.js",
