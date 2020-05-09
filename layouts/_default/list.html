@@ -1,13 +1,13 @@
-{{ partial "header.html" . }}
+{{ define "main" }}
 
-<main id="content">
-{{ $paginator := .Paginator }}
-	<h1 class="post-title">{{ .Title }}</h1> 
-    {{ range $index, $page := .Paginator.Pages }}
-        {{ .Render "li" }}
-    {{ end }}
+<div class="content">
+    <h1>{{ .Title | title }}</h1>
+</div>
 
-    {{ partial "pagination.html" $paginator }}
-</main>
+{{ range .Paginator.Pages }}
+{{- partial "blog-brief.html" . -}}
+{{ end }}
 
-{{ partial "footer.html" . }}
+{{ partial "pagination.html"}}
+
+{{ end }}

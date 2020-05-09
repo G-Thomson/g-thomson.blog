@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Culture on The Mindfield</title>
+    <link>/tags/culture/</link>
+    <description>Recent content in Culture on The Mindfield</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 12 Oct 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/culture/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>An Emergent Theory of Art</title>
+      <link>/posts/theory-of-art/</link>
+      <pubDate>Mon, 12 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/theory-of-art/</guid>
+      <description>While recently listening to an episode of Radiolab 1 I was inspired to ruminate on my opinions about art and culture. One of their stories was about a system of pictorial symbols created to replace all languages with their inherent ambiguities and thus negate the possibility of misrepresentations and misunderstandings.</description>
+    </item>
+    
+    <item>
+      <title>Fired from the Cannon</title>
+      <link>/posts/fired-from-the-cannon/</link>
+      <pubDate>Mon, 12 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/fired-from-the-cannon/</guid>
+      <description>Note: that this was written before Disney brought Star Wars and the subsequent changes to what determines the cannon.
+This post stems from a comment I made on an opinion piece by Michelle Smith on The Conversation 1 which dealt with how the Harry Potter series by J.</description>
+    </item>
+    
+  </channel>
+</rss>

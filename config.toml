@@ -1,37 +1,56 @@
-baseurl = "http://g-thomson.github.com/"
-relativeurls = true
+baseURL = "https://g-thomson.blog/"
+#CanonifyURLs=true
+
 languageCode = "en-us"
+theme = "ramium"
+
 title = "The Mindfield"
-publishDir = "docs"
-
-googleAnalytics = ""
 disqusShortname = ""
-ignoreFiles = ["\\.Rmd$", "_files$", "_cache$"]
-
-[permalinks]
-    post = "/:year/:month/:day/:slug/"
-
-[[menu.main]]
-    name = "About"
-    url = "www.g-thomson.com"
-[[menu.main]]
-    name = "GitHub"
-    url = "https://github.com/G-Thomson"
-[[menu.main]]
-    name = "Twitter"
-    url = "https://twitter.com/gojthomson"
+googleAnalytics = ""
+summaryLength = 40
+pluralizeListTitles = false
+enableemoji = false
 
 [params]
-    description = "A website built through Hugo and blogdown."
+    description = "A description for the meta tag of the site"
+    googleSearch = ""
+    showDate = true # make false if dont want to show date
+    math = false # best to enable this in the front matter of a page
+   # githubProfile = "rafed/ramium/"
 
-    # options for highlight.js (version, additional languages, and theme)
-    highlightjsVersion = "9.9.0"
-    highlightjsLang = ["r", "yaml"]
-    highlightjsTheme = "github"
+    tagsInHome = 40
+    sectionsInHome = 5
+    paginatePostsPerPage = 5
+    paginateTagsPerPage = 6
 
-    [params.logo]
-    url = "logo.png"
-    width = 50
-    height = 50
-    alt = "Logo"
+[taxonomies]
+    tag = "tags"
 
+[markup.goldmark.renderer]
+    unsafe = true
+
+#[menu]
+#    [[menu.main]]
+#        identifier = "blog"
+#        name = "This Blog"
+#        weight = 2
+#            [[menu.main]]
+#                parent = "blog"
+#                name = "All Tags"
+#                url = "/tags/"
+#                weight = 1
+#            [[menu.main]]
+#                parent = "blog"
+#                name = "All Sections"
+#                url = "/sections/"
+#                weight = 2
+#            [[menu.main]]
+#                parent = "blog"
+#                name = "All Posts"
+#                url = "/posts/"
+#                weight = 3
+    
+    [[menu.main]]
+        name = "About me"
+        url = "https://g-thomson.com/"
+        weight = 3

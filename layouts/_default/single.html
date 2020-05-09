@@ -1,37 +1,50 @@
-{{ $baseurl := .Site.BaseURL }}
-{{ partial "header_post.html" . }}
-<main id="content">
+{{ define "main" }}
 
-<article id="{{ .Slug }}" class="{{ .Type }}">
-    <div class="post-stamp">
-        <a id="logo" href="{{ .Site.BaseURL }}"><img src="/img/c_brain.svg" alt="{{ .Site.Title }}" height = "25" width = "25" /></a>
-        <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">
-            {{ .Date.Format "2 Jan 2006" }}
-        </time>
-        
-         <span class="catlist">
-        {{if .Params.categories }}
-        &middot;
-        {{ range $index, $categories := .Params.categories }}
-            <a href="{{ $baseurl }}categories/{{ $categories | urlize }}/">{{ $categories }}</a>
-        {{ end }}
-        {{ end }}
-        </span>
-        
-        <span class="taglist">
-        {{if .Params.tags }}
-        &middot;
-        {{ range $index, $tag := .Params.tags }}
-            <a href="{{ $baseurl }}tags/{{ $tag | urlize }}/">{{ $tag }}</a>
-        {{ end }}
-        {{ end }}
-        </span>
-        
+<div class="content blog">
+    <h1 class="title">{{ .Title | title }}</h1>
+
+    <div id="infobar" class="level is-mobile">
+        <div class="level-left">
+            {{ if or .Params.showDate .Site.Params.showDate }}
+            <div class="level-item">
+                <p class="subtitle info date">
+                    {{- .Date.Format "Jan 2, 2006" }}
+                </p>
+            </div>
+            {{ end }}
+
+            <div class="level-item">
+                <p class="subtitle info">
+                    {{ partial "time-to-read.html" . }}
+                </p>
+            </div>
+        </div>
+        <div class="level-right is-hidden-touch">
+            <div class="tags">
+                {{ range .Params.tags }}
+                <a class="tag is-dark is-rounded" href="{{ "/tags/" | relURL }}{{ . | urlize }}">{{ . | title }}</a>
+                {{ end }}
+            </div>
+        </div>
     </div>
-    <h1 class="post-title">{{ .Title }}</h1>
-    {{ partial "share.html" . }}
-    {{ .Content }}
-</article>
 
-</main>
-{{ partial "footer_post.html" . }}
+    <div class="tags is-hidden-desktop">
+        {{ range .Params.tags }}
+        <a class="tag is-dark is-rounded" href="{{ "/tags/" | relURL }}{{ . | urlize }}">{{ . | humanize }}</a>
+        {{ end }}
+    </div>
+
+    <div class="blog-text">
+        {{ with .Params.image }}
+        <img src="{{ . | relURL }}">
+        {{ end }}
+
+        {{ .Content }}
+    </div>
+</div>
+
+<!-- {{- partial "social-media-share.html" . -}} -->
+<br>
+{{ partial "disqus.html" . }}
+
+{{ end }}
