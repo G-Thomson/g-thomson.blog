@@ -39,11 +39,11 @@ input:focus::placeholder {
 .seeall {
     padding-top: 10px;
     padding-bottom: 10px;
-    background-color: rgb(214, 214, 214);
+    background-color: #2A5079;
 }
 
 .seeall:hover {
-    background-color: rgb(187, 187, 187);
+    background-color: #A7B6C8;
     text-decoration: underline;
 }
 
