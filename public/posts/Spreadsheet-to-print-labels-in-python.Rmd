@@ -1,0 +1,92 @@
+---
+date: "2020-05-11"
+description: How I make labels for my seed packets
+tags:
+- Python
+title: From spreadsheet to print labels using python
+output: html_document
+---
+
+As a plant biologist I routinely generate a lot of seed from the plants I grow and study. Pricipally at the moment this is the seed of  *Arabidopsis thaliana* which is very small. To keep on top of things I catalogue all my seeds and keep a spreadsheet of all my seed. The spreadsheet looks a little like this:
+
+```{r echo=FALSE, message=FALSE}
+dat <- readr::read_csv("../../static/data/labels_demo.csv")
+kableExtra::kable_styling(knitr::kable(dat), font_size = 7)
+```
+<br/><br/>
+This serves me well as a seed registry and corresponds to a box in my fridge where I have been storing the actual seed in 1.5 ml microcentrifuge tubes. Largly out of convinience as I use the tubes for everything and also because that is what I did in my previous lab where *A. thaliana* was not the main study system. However I've noticed that others in my lab store their *A. thaliana* seed in little paper packets which I think are more space efficient and may be a better storage environment if there is any moisture present. A fellow postdoc has made nice labels for all of their seed packets so I though I might too. Thus I set out to do just this!
+
+Starting from my seed spreadsheet, which is accessible as a CSV file, I figured python would be a good tool to use and I found this neat open source library called [blabel](https://github.com/Edinburgh-Genome-Foundry/blabel) which does what I want. Essentially I just have to load the CSV file, convert it to a list of dictionaries where each dictionary represents a row and blabel does the rest. It is very flexible as it takes a HTML file to determine the size and layout of the label and a CSS file is provided to style it. I generally follow the example style. The output is a label for each row as a page of a PDF. I wrapped this into a self contained python script I call `make_labels.py` (avaliable at the end of the post). 
+
+I can implement it like so:
+
+```{bash eval=FALSE, include=TRUE}
+python make_labels.py -i seed_data.csv
+```
+
+![](/posts/Spreadsheet-to-print-labels-in-python_files/label_demo.png){width=293px height=120px}
+
+
+This is great! and produces a PDF with each page being a label. These are generally very small and I am sure they are very useful if you have a label printer. However I do not so I would like to aglomerate them all onto A4 pieces of paper I can print out, cut up and stick to my seed packets. This [Stack Exchange question](https://unix.stackexchange.com/questions/161715/combine-multiple-pdf-files-into-one-arranged-in-a-matrix) led me to a shell script utility called [pdfjam](https://github.com/DavidFirth/pdfjam) and I found that the deprecated [pdfnup](https://github.com/DavidFirth/pdfjam-extras/blob/master/bin/pdfnup) script does what I'm after if I implement it like this: 
+
+```{bash eval=FALSE, include=TRUE}
+bash pdfnup.sh output.pdf --nup 5x8
+```
+
+![](/posts/Spreadsheet-to-print-labels-in-python_files/label_demo2.png){width=290px height=209px}
+
+This fits my needs as I usually harvest seeds in batches. I will need to test them out on the printer and maybe reduce the number on a page to avoid the margins but essentially from here on I can generate new labels as I need them by feeding the `make_labels.py` script new rows from my seed spreadsheet. I will then just stick them to the seed packets.
+
+This is the `make_labels.py` script:
+
+```{r eval=FALSE, include=TRUE}
+#! /usr/bin/env python
+
+import click
+import pandas as pd
+from blabel import LabelWriter
+
+@click.command()
+@click.option('-i', '--input',  required=True, type=str, help="CSV file with columns that match the variables in the HTML template")
+@click.option('-o', '--output', default="output.pdf", type=str, help="Name of the output PDF")
+@click.option('-t', '--template', default="item_template.html", type=str, help="Name of the HTML template file", show_default="item_template.html")
+@click.option('-s', '--style', default="style.css", type=str, help="Name of the CSS file", show_default="style.css")
+
+def write_labels(input, output, template, style):
+	df = pd.read_csv(input)
+	records = df.to_dict('records')
+
+	label_writer = LabelWriter(template, default_stylesheets=(style,))
+	label_writer.write_labels(records, target=output)     
+
+if __name__ == '__main__':
+    write_labels()    
+```
+
+This is the HTML file called `item_template.html`:
+```{r eval=FALSE, include=TRUE}
+<span class='label'>
+	Sowing number: {{ Sowing_number }} <br/>
+	Genotype: {{ Genotype }}           <br/>
+	Vector: {{ Vector }}               <br/>
+	Comment: {{ Comment }}             <br/>
+                                       <br/>
+	Date harvested: {{ Date_harvested }}
+</span>
+```
+
+This is the CSS `style.css` file:
+```{r eval=FALSE, include=TRUE}
+@page {
+    width: 36mm;
+    height: 14mm;
+    padding: 0.5mm;
+}
+.label {
+    font-family: Verdana;
+    font-weight: bold;
+    vertical-align: middle;
+    display: inline-block;
+    font-size: 7px;
+}
+```

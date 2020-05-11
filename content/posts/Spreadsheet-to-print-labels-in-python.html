@@ -1,0 +1,257 @@
+---
+date: "2020-05-11"
+description: How I make labels for my seed packets
+tags:
+- Python
+title: From spreadsheet to print labels using python
+output: html_document
+---
+
+<script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
+
+
+<p>As a plant biologist I routinely generate a lot of seed from the plants I grow and study. Pricipally at the moment this is the seed of <em>Arabidopsis thaliana</em> which is very small. To keep on top of things I catalogue all my seeds and keep a spreadsheet of all my seed. The spreadsheet looks a little like this:</p>
+<table class="table" style="font-size: 7px; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Sowing_number
+</th>
+<th style="text-align:left;">
+Species
+</th>
+<th style="text-align:left;">
+Genotype
+</th>
+<th style="text-align:left;">
+Vector
+</th>
+<th style="text-align:left;">
+Date_harvested
+</th>
+<th style="text-align:left;">
+Parent
+</th>
+<th style="text-align:left;">
+Comment
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+A010
+</td>
+<td style="text-align:left;">
+Arabidopsis thaliana
+</td>
+<td style="text-align:left;">
+Ra-0
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+22/01/20
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A011
+</td>
+<td style="text-align:left;">
+Arabidopsis thaliana
+</td>
+<td style="text-align:left;">
+Ct-1
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+22/01/20
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A012
+</td>
+<td style="text-align:left;">
+Arabidopsis thaliana
+</td>
+<td style="text-align:left;">
+Mz-0
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+22/01/20
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A014
+</td>
+<td style="text-align:left;">
+Arabidopsis thaliana
+</td>
+<td style="text-align:left;">
+HR-10
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+22/01/20
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A015
+</td>
+<td style="text-align:left;">
+Arabidopsis thaliana
+</td>
+<td style="text-align:left;">
+NFA-10
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+22/01/20
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A016
+</td>
+<td style="text-align:left;">
+Arabidopsis thaliana
+</td>
+<td style="text-align:left;">
+Gu-0
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+22/01/20
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A018
+</td>
+<td style="text-align:left;">
+Arabidopsis thaliana
+</td>
+<td style="text-align:left;">
+Sq-8
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+22/01/20
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+</tbody>
+</table>
+<p><br/><br/>
+This serves me well as a seed registry and corresponds to a box in my fridge where I have been storing the actual seed in 1.5 ml microcentrifuge tubes. Largly out of convinience as I use the tubes for everything and also because that is what I did in my previous lab where <em>A. thaliana</em> was not the main study system. However I’ve noticed that others in my lab store their <em>A. thaliana</em> seed in little paper packets which I think are more space efficient and may be a better storage environment if there is any moisture present. A fellow postdoc has made nice labels for all of their seed packets so I though I might too. Thus I set out to do just this!</p>
+<p>Starting from my seed spreadsheet, which is accessible as a CSV file, I figured python would be a good tool to use and I found this neat open source library called <a href="https://github.com/Edinburgh-Genome-Foundry/blabel">blabel</a> which does what I want. Essentially I just have to load the CSV file, convert it to a list of dictionaries where each dictionary represents a row and blabel does the rest. It is very flexible as it takes a HTML file to determine the size and layout of the label and a CSS file is provided to style it. I generally follow the example style. The output is a label for each row as a page of a PDF. I wrapped this into a self contained python script I call <code>make_labels.py</code> (avaliable at the end of the post).</p>
+<p>I can implement it like so:</p>
+<pre class="bash"><code>python make_labels.py -i seed_data.csv</code></pre>
+<p><img src="/posts/Spreadsheet-to-print-labels-in-python_files/label_demo.png" width="293" height="120" /></p>
+<p>This is great! and produces a PDF with each page being a label. These are generally very small and I am sure they are very useful if you have a label printer. However I do not so I would like to aglomerate them all onto A4 pieces of paper I can print out, cut up and stick to my seed packets. This <a href="https://unix.stackexchange.com/questions/161715/combine-multiple-pdf-files-into-one-arranged-in-a-matrix">Stack Exchange question</a> led me to a shell script utility called <a href="https://github.com/DavidFirth/pdfjam">pdfjam</a> and I found that the deprecated <a href="https://github.com/DavidFirth/pdfjam-extras/blob/master/bin/pdfnup">pdfnup</a> script does what I’m after if I implement it like this:</p>
+<pre class="bash"><code>bash pdfnup.sh output.pdf --nup 5x8</code></pre>
+<p><img src="/posts/Spreadsheet-to-print-labels-in-python_files/label_demo2.png" width="290" height="209" /></p>
+<p>This fits my needs as I usually harvest seeds in batches. I will need to test them out on the printer and maybe reduce the number on a page to avoid the margins but essentially from here on I can generate new labels as I need them by feeding the <code>make_labels.py</code> script new rows from my seed spreadsheet. I will then just stick them to the seed packets.</p>
+<p>This is the <code>make_labels.py</code> script:</p>
+<pre class="r"><code>#! /usr/bin/env python
+
+import click
+import pandas as pd
+from blabel import LabelWriter
+
+@click.command()
+@click.option(&#39;-i&#39;, &#39;--input&#39;,  required=True, type=str, help=&quot;CSV file with columns that match the variables in the HTML template&quot;)
+@click.option(&#39;-o&#39;, &#39;--output&#39;, default=&quot;output.pdf&quot;, type=str, help=&quot;Name of the output PDF&quot;)
+@click.option(&#39;-t&#39;, &#39;--template&#39;, default=&quot;item_template.html&quot;, type=str, help=&quot;Name of the HTML template file&quot;, show_default=&quot;item_template.html&quot;)
+@click.option(&#39;-s&#39;, &#39;--style&#39;, default=&quot;style.css&quot;, type=str, help=&quot;Name of the CSS file&quot;, show_default=&quot;style.css&quot;)
+
+def write_labels(input, output, template, style):
+    df = pd.read_csv(input)
+    records = df.to_dict(&#39;records&#39;)
+
+    label_writer = LabelWriter(template, default_stylesheets=(style,))
+    label_writer.write_labels(records, target=output)     
+
+if __name__ == &#39;__main__&#39;:
+    write_labels()    </code></pre>
+<p>This is the HTML file called <code>item_template.html</code>:</p>
+<pre class="r"><code>&lt;span class=&#39;label&#39;&gt;
+    Sowing number: {{ Sowing_number }} &lt;br/&gt;
+    Genotype: {{ Genotype }}           &lt;br/&gt;
+    Vector: {{ Vector }}               &lt;br/&gt;
+    Comment: {{ Comment }}             &lt;br/&gt;
+                                       &lt;br/&gt;
+    Date harvested: {{ Date_harvested }}
+&lt;/span&gt;</code></pre>
+<p>This is the CSS <code>style.css</code> file:</p>
+<pre class="r"><code>@page {
+    width: 36mm;
+    height: 14mm;
+    padding: 0.5mm;
+}
+.label {
+    font-family: Verdana;
+    font-weight: bold;
+    vertical-align: middle;
+    display: inline-block;
+    font-size: 7px;
+}</code></pre>

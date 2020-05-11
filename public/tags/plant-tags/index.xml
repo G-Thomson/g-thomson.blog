@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Plant tags on The Mindfield</title>
+    <link>/tags/plant-tags/</link>
+    <description>Recent content in Plant tags on The Mindfield</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 11 May 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/plant-tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Spreadsheet to print labels in python</title>
+      <link>/posts/spreadsheet-to-print-labels-in-python/</link>
+      <pubDate>Mon, 11 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/spreadsheet-to-print-labels-in-python/</guid>
+      <description>Sowing_number Species Genotype Vector Date_harvested Parent Comment    A010 Arabidopsis thaliana Ra-0 NA 22/01/20 NA NA  A011 Arabidopsis thaliana Ct-1 NA 22/01/20 NA NA  A012 Arabidopsis thaliana Mz-0 NA 22/01/20 NA NA  A014 Arabidopsis thaliana HR-10 NA 22/01/20 NA NA  A015 Arabidopsis thaliana NFA-10 NA 22/01/20 NA NA  A016 Arabidopsis thaliana Gu-0 NA 22/01/20 NA NA  A018 Arabidopsis thaliana Sq-8 NA 22/01/20 NA NA    #!</description>
+    </item>
+    
+  </channel>
+</rss>

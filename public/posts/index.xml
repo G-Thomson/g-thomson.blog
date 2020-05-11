@@ -6,10 +6,19 @@
     <description>Recent content in Posts on The Mindfield</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 12 Oct 2015 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 May 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>From spreadsheet to print labels using python</title>
+      <link>/posts/spreadsheet-to-print-labels-in-python/</link>
+      <pubDate>Mon, 11 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/spreadsheet-to-print-labels-in-python/</guid>
+      <description>As a plant biologist I routinely generate a lot of seed from the plants I grow and study. Pricipally at the moment this is the seed of Arabidopsis thaliana which is very small. To keep on top of things I catalogue all my seeds and keep a spreadsheet of all my seed.</description>
+    </item>
     
     <item>
       <title>An Emergent Theory of Art</title>
